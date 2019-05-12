@@ -1,0 +1,140 @@
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 30%;
+  margin: 15px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+</style>
+
+
+
+<div class="container">
+
+    <div class="page-header">
+        <h3>This Window to be shown under Project Leader account.</h3>
+    </div>
+    <div class="row grid-divider">
+
+        <div class="col-sm-4 card">
+          <div class="col-padding">
+
+            <div>
+                <h4>Project Name</h4>
+            </div>
+
+            <div>
+                <h5>Start Date</h5>
+            </div>
+
+            <a href="#myModal" data-toggle="modal">Show Project Assets</a>
+
+            <div align="right">
+                <span>Assigned to <strong>Nur, Najah</strong></span>
+            </div>
+
+             <div align="right">
+                <h5>End Date</h5>
+             </div>
+
+              <div class="form-group">
+                    <label>Change Status</label>
+                    <select>
+                        <option value="inprogress">In-Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="terminated">Terminated</option>
+                    </select>
+
+              </div>
+
+              <div class="alert alert-info">
+                  <strong>Status, </strong> Project is in-progress.
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-sm-4 card">
+          <div class="col-padding">
+
+            <div>
+                <h4><div class="form-group">
+                        <input type="text" class="form-control" placeholder="Project Name">
+                    </div>
+                </h4>
+            </div>
+
+            <div>
+                <h5><div class="form-group">
+                      <label>Start Date</label>
+                      <input type="date" class="form-control">
+                    </div>
+                </h5>
+             </div>
+
+            <div class="custom-file" id="customFile" style="display: inline-block">
+                <input type="file" class="custom-file-input" id="exampleInputFile" aria-describedby="fileHelp">
+            </div>
+
+            <br><br>
+
+            <div class="form-group">
+                    <label>Assign to</label>
+                    <select>
+                        <option value="staffId">Owais</option>
+                        <option value="staffId">Najah</option>
+                        <option value="staffId">Ireen</option>
+                        <option value="staffId">Nur</option>
+                    </select>
+
+            </div>
+
+
+            <div class="form-group">
+                    <label>Assign to</label>
+                    <select>
+                        <option value="staffId">Owais</option>
+                        <option value="staffId">Najah</option>
+                        <option value="staffId">Ireen</option>
+                        <option value="staffId">Nur</option>
+                    </select>
+
+            </div>
+
+
+             <div>
+                <h5><div class="form-group">
+                      <label>End Date</label>
+                      <input type="date" class="form-control">
+                    </div>
+                </h5>
+             </div>
+
+              <div align="center">
+                  <button type="button" class="btn btn-info">
+                    <span class="glyphicon glyphicon-plus"></span> Create Project
+                  </button>
+              </div>
+
+
+             <br>
+
+          </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
