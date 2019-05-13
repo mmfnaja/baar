@@ -38,9 +38,31 @@ class realtime(models.Model):
 # 1 - M Relation (1 project-leader creates many projects) --
 class project(models.Model):
     staffid = models.ForeignKey(staff, on_delete=models.CASCADE)
-    projectname = models.CharField(max_length=200)
-    startdate = models.DateField()
-    enddate = models.DateField()
+    project_name = models.CharField(max_length=200)
+
+class activity_log(models.Model):
+    project = models.ForeignKey(project, on_delete= models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    message = models.CharField(max_length=1000)
+
+class task(models.Model):
+    project_name = models.ForeignKey(project, on_delete=models.CASCADE)
+    task_name = models.CharField(max_length=500)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    person_incharge = models.ForeignKey(staff, on_delete=models.CASCADE)
+    project_status_enum = (
+        ('Closed', 'Closed'),
+        ('InProgress', 'InProgress'),
+        ('Completed', 'Completed'),
+        ('Terminated', 'Terminated'),
+        ('Due', 'Due')
+    )
+    status = models.CharField(max_length=10, choices=project_status_enum, default='Closed')
+
+class task_deliverables(models.Model):
+    file = models.FileField(upload_to='deliverables/')
+    related_task = models.ForeignKey(task, on_delete=models.CASCADE)
 
 # 1 - M Relation (1 Project can have multiple asset's path(images, file etc) --
 class projectasset(models.Model):
