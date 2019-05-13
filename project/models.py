@@ -39,6 +39,7 @@ class realtime(models.Model):
 class project(models.Model):
     staffid = models.ForeignKey(staff, on_delete=models.CASCADE)
     project_name = models.CharField(max_length=200)
+    members = models.ManyToManyField(staff, blank=True, null=True, related_name="members")
 
 class activity_log(models.Model):
     project = models.ForeignKey(project, on_delete= models.CASCADE)
