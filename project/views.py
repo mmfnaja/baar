@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.models import User
+
 
 
 class Main():
@@ -21,10 +23,14 @@ class Main():
         template_name = "chatroom.html";
         return render(request, template_name)
 
-    def myaccount(request):
-
-        template_name = "profile.html";
-        return render(request, template_name)
+    def myaccount(request, pk=None):
+        template_name = 'profile.html'
+        if pk:
+            user = User.objects.get(pk=pk)
+        else:
+             user = request.user
+        args = {'user': user}
+        return render(request, template_name, args)
 
 
     # def specific(request):

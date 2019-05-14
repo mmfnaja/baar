@@ -87,12 +87,12 @@
 		<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
     	 <div class="well profile" style="width: 100%">
                 <div>
-                    <h2>umerkhattab@DevSoft</h2>
-                    <h3>Owais Qureshi</h3>
-                    <p><strong>Competency: </strong> Good </p>
-                    <p><strong>Job Level: </strong> Developer </p>
-                    <p><strong>Address: </strong> Kelana Jaya, PJ, Selangor, Malaysia</p>
-                    <p><strong>Joining Date: </strong> May, 24, 2017</p>
+                    <h2>{{ user.staff.loginid }}</h2>
+                    <h3>{{ user.staff.name }}</h3>
+                    <p><strong>Competency: </strong> {{ user.staff.competency }} </p>
+                    <p><strong>Job Level: </strong> {{ user.staff.staff }} </p>
+                    <p><strong>Address: </strong> {{ user.staff.address }}</p>
+                    <p><strong>Joining Date: </strong> {{ user.staff.start_date }}</p>
                 </div>
 
             <hr>

@@ -1,8 +1,10 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 # Create your models here.
 
 class staff(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=0)
     loginid = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
@@ -24,6 +26,13 @@ class staff(models.Model):
         default=DEVELOPER,
     )
 
+    def __str__(self):
+        return self.user.username
+
+    def create_profile(sender,**kwargs):
+        if kwargs['created']:
+            account = staff.objects.create(user=kwargs['instance'])
+    post_save.connect(create_profile, sender=User)
 
     # created_at = models.DateTimeField(auto_now_add=True)
     # updated_at = models.DateTimeField(auto_now=True)
