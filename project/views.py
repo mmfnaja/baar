@@ -5,9 +5,11 @@ from django.views import generic
 from .models import *
 
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
 class Main():
-
-
+    login_url = 'login/'
     def index(request):
 
         template_name = "index.html";
