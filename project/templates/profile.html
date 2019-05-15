@@ -1,4 +1,5 @@
 {% include "base.html" %}
+{% load crispy_forms_tags %}
 
 <style>
     @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
@@ -97,36 +98,17 @@
 
             <hr>
 
-                <form>
-                    <div>
-                        <h4><div class="form-group">
-                                <input type="text" class="form-control" placeholder="New LoginId">
-                            </div>
-                        </h4>
-                    </div>
 
-                    <div>
-                        <h4><div class="form-group">
-                                <input type="text" class="form-control" placeholder="Update Name">
-                            </div>
-                        </h4>
-                    </div>
-
-                     <div>
-                            <h4><div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Change Address">
-                                </div>
-                            </h4>
-                     </div>
-
-                    <div align="center">
-                      <button type="button" class="btn btn-warning">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div align="center" class="form-group">
+                      <button type="submit" class="btn btn-warning">
                         <span class="glyphicon glyphicon-edit"></span> Update Profile
                       </button>
                   </div>
 
                 </form>
-
 
     	 </div>
 		</div>

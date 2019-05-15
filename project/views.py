@@ -1,6 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -22,16 +22,19 @@ class Main():
         template_name = "chatroom.html";
         return render(request, template_name)
 
-    def myaccount(request, pk=None):
+    def myaccount(request):
         template_name = 'profile.html'
-        if pk:
-            user = User.objects.get(pk=pk)
+        if request.method == 'POST':
+            form = ProfileUpdateForm(request.POST, instance=request.user.staff)
+            if form.is_valid():
+                form.save()
+                return redirect('/myaccount')
         else:
-             user = request.user
-        args = {'user': user}
-        return render(request, template_name, args)
-
-
+            form = ProfileUpdateForm(instance=request.user.staff)
+        context={
+            'form':form
+        }
+        return render(request, template_name, context)
     # def specific(request):
     #     value = request.GET["id"]
     #     brand = Brand.objects.get(pk=value)
