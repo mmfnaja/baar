@@ -1,197 +1,68 @@
+{% include "base.html" %}
+{% load static %}
 <style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 30%;
-  margin: 15px;
-}
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 30%;
+    margin: 15px;
+  }
 
-.card:hover {
-  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2);
-}
+  .card:hover {
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2);
+  }
 
-.container {
-  padding: 2px 16px;
-}
+  .container {
+    padding: 2px 16px;
+  }
 </style>
 
 
-
+{% block content %}
 <div class="container">
 
+  <div class="page-header">
+    <h3>Projects</h3>
+  </div>
+  {% if user.is_authenticated %}
+  
+  <div class="row grid-divider">
+    {% for project in all_projects %}
+    <div class="col-sm-4 card">
+      <div class="col-padding">
 
-    <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-              <h4 class="modal-title">Project Support Images</h4>
-            </div>
-            <div class="modal-body">
-
-              <div class="row">
-
-                 <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px" >
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                 </div>
-
-                  <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px" >
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                 </div>
-
-                  <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px" >
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                 </div>
-
-                  <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" style="margin-bottom: 20px" >
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                 </div>
-
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-
-
-    <div class="page-header">
-        <h3>Grid System to Show Projects to all staff except Project Leader.</h3>
-    </div>
-    <div class="row grid-divider">
-
-        <div class="col-sm-4 card">
-          <div class="col-padding">
-
-            <div>
-                <h4>Project Name</h4>
-            </div>
-
-            <div>
-                <h5>Start Date</h5>
-            </div>
-
-            <a href="#myModal" data-toggle="modal">Show Project Assets</a>
-
-            <div align="right">
-                <span>Assigned to <strong>You, Ireen</strong></span>
-            </div>
-
-             <div align="right">
-                <h5>End Date</h5>
-             </div>
-
-              <div class="alert alert-info">
-                  <strong>Status, </strong> Project is in-progress.
-              </div>
-
-          </div>
-
+        <div>
+            <a href = "{% url 'projects:task' project.id %}">
+                <h4>{{project.project_name}}</h4>
+            </a>
         </div>
 
-        <div class="col-sm-4 card">
-          <div class="col-padding">
-
-            <div>
-                <h4>Project Name 2</h4>
-            </div>
-
-            <div>
-                <h5>Start Date</h5>
-            </div>
-
-            <a href="#myModal" data-toggle="modal">Show Project Assets</a>
-
-            <div align="right">
-                <span>Assigned to <strong>You, Ireen</strong></span>
-            </div>
-
-             <div align="right">
-                <h5>End Date</h5>
-             </div>
-
-              <div class="alert alert-success">
-                  <strong>Status, </strong> Project has been completed.
-              </div>
-
-          </div>
-
+        <div>
+          <h5>Start Date</h5>
         </div>
 
-        <div class="col-sm-4 card">
+        <a href="#myModal" data-toggle="modal">Show Project Assets</a>
 
-          <div class="col-padding">
-
-            <div>
-                <h4>Project Name 3</h4>
-            </div>
-
-            <div>
-                <h5>Start Date</h5>
-            </div>
-
-            <a href="#myModal" data-toggle="modal">Show Project Assets</a>
-
-            <div align="right">
-                <span>Assigned to <strong>You, Ireen</strong></span>
-            </div>
-
-             <div align="right">
-                <h5>End Date</h5>
-             </div>
-
-              <div class="alert alert-danger">
-                  <strong>Status, </strong> Project is Terminated.
-              </div>
-
-          </div>
-
+        <div align="right">
+          <span>Assigned to <strong>You, Ireen</strong></span>
         </div>
 
+        <div align="right">
+          <h5>End Date</h5>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>Status, </strong> Project is in-progress.
+        </div>
+
+      </div>
 
     </div>
 
-    <script>
-
-        var modal = document.getElementById('myModal2');
-
-            // Get the image and insert it inside the modal - use its "alt" text as a caption
-            var img = document.getElementsByClassName('myImg2');
-            var modalImg = document.getElementById("img01");
-            var captionText = document.getElementById("caption2");
-
-            var showModal = function(){
-                modal.style.display = "block";
-                modalImg.src = this.src;
-                captionText.innerHTML = this.alt;
-            }
-
-            for (var i = 0; i < img.length; i++) {
-                img[i].addEventListener('click', showModal);
-            }
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close2")[0];
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-
-    </script>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>Please login to view projects</p>
+  {% endif %}
 </div>
-
-
-
-<!--            <div style="display: inline-block">-->
-<!--                <select>-->
-<!--                    <option value="staffId">Owais</option>-->
-<!--                    <option value="staffId">Najah</option>-->
-<!--                    <option value="staffId">Ireen</option>-->
-<!--                    <option value="staffId">Nur</option>-->
-<!--                </select>-->
-<!--            </div>-->
+{% endblock %}
