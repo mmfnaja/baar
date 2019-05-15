@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
-
+from django.views import generic
+from .models import *
 
 
 class Main():
@@ -11,7 +12,6 @@ class Main():
 
         template_name = "index.html";
         return render(request, template_name)
-
 
     def login(request):
 
@@ -31,6 +31,10 @@ class Main():
              user = request.user
         args = {'user': user}
         return render(request, template_name, args)
+    
+    #def project(request):
+    #    template_name = 'project.html'
+    #    return render(request, template_name) 
 
 
     # def specific(request):
@@ -54,3 +58,10 @@ class Main():
     #     return render(request, 'review.html', {'obj' :obj,
     #                                            'newslink' :newslink,
     #                                            'review' :review})
+
+class ProjectListView(generic.ListView):
+    template_name = 'project.html'
+    context_object_name = 'all_projects'
+
+    def get_queryset(self):
+        return project.objects.all()
