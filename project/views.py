@@ -67,3 +67,11 @@ class ProjectListView(generic.ListView):
 
     def get_queryset(self):
         return project.objects.all()
+
+class TaskDetailView(generic.DetailView):
+    model = project
+    template_name = 'task.html'
+
+class TaskInfoDetailView(generic.DetailView):
+    model = task
+    template_name = 'taskinfo.html'

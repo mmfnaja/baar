@@ -1,0 +1,63 @@
+{% include "base.html" %}
+{% load static %}
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 30%;
+        margin: 15px;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+</style>
+{% block content %}
+<div class="container">
+
+    <div class="page-header">
+        <h3>Tasks</h3>
+    </div>
+    {% if user.is_authenticated %}
+
+    <div class="row grid-divider">
+        {% for task_item in project.task_set.all %}
+        <div class="col-sm-4 card">
+            <div class="col-padding">
+
+                <div>
+                    <a href="{% url 'projects:task' project.id %}">
+                        <h4>{{task_item.task_name}}</h4>
+                    </a>
+                </div>
+
+                <div>
+                    <h5>Start Date: <strong>{{task_item.start_date}}</strong></h5>
+                </div>
+                <div>
+                    <h5>End Date: <strong>{{task_item.end_date}}</strong></h5>
+                </div>
+                <div>
+                    <h5>Person incharge: <strong>{{task_item.person_incharge.name}}</strong></h5>
+                </div>
+
+                <a href="#myModal" data-toggle="modal">Show Project Assets</a>
+
+                <div class="alert alert-info">
+                    <strong>Status, </strong> Project is {{task_item.status}}.
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Please login to view projects</p>
+    {% endif %}
+</div>
+{% endblock %}
