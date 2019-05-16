@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.views import generic
+from .models import *
+
 
 @login_required
 class Main():
@@ -35,6 +38,22 @@ class Main():
             'form':form
         }
         return render(request, template_name, context)
+
+class ProjectListView(generic.ListView):
+    template_name = 'project.html'
+    context_object_name = 'all_projects'
+
+    def get_queryset(self):
+        return project.objects.all()
+
+class TaskDetailView(generic.DetailView):
+    model = project
+    template_name = 'task.html'
+
+class TaskInfoDetailView(generic.DetailView):
+    model = task
+    template_name = 'taskinfo.html'
+
     # def specific(request):
     #     value = request.GET["id"]
     #     brand = Brand.objects.get(pk=value)

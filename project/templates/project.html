@@ -30,33 +30,12 @@
     {% for project in all_projects %}
     <div class="col-sm-4 card">
       <div class="col-padding">
-
         <div>
             <a href = "{% url 'projects:task' project.id %}">
                 <h4>{{project.project_name}}</h4>
             </a>
         </div>
-
-        <div>
-          <h5>Start Date</h5>
-        </div>
-
-        <a href="#myModal" data-toggle="modal">Show Project Assets</a>
-
-        <div align="right">
-          <span>Assigned to <strong>You, Ireen</strong></span>
-        </div>
-
-        <div align="right">
-          <h5>End Date</h5>
-        </div>
-
-        <div class="alert alert-info">
-          <strong>Status, </strong> Project is in-progress.
-        </div>
-
       </div>
-
     </div>
 
     {% endfor %}
