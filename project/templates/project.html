@@ -40,6 +40,9 @@
 
     {% endfor %}
   </div>
+  {% if user.staff.staff == "PG" %}
+  <button class="btn btn-primary">Add Projects</button>
+  {% endif %}
   {% else %}
   <p>Please login to view projects</p>
   {% endif %}
