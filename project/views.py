@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import ProfileUpdateForm
+from account.forms import ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from .models import *
@@ -25,19 +24,7 @@ class Main():
         template_name = "chatroom.html";
         return render(request, template_name)
 
-    def myaccount(request):
-        template_name = 'profile.html'
-        if request.method == 'POST':
-            form = ProfileUpdateForm(request.POST, instance=request.user.staff)
-            if form.is_valid():
-                form.save()
-                return redirect('/myaccount')
-        else:
-            form = ProfileUpdateForm(instance=request.user.staff)
-        context={
-            'form':form
-        }
-        return render(request, template_name, context)
+
 
 class ProjectListView(generic.ListView):
     template_name = 'project.html'

@@ -1,5 +1,5 @@
 from django import forms
-from .models import staff
+from project.models import staff
 
 
 class ProfileUpdateForm(forms.ModelForm):
